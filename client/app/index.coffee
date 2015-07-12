@@ -12,9 +12,14 @@ app= angular.module process.env.APP,[
   'ngAnimate'
   'ngStorage'
   'btford.socket-io'
+
+  'angularMoment'
 ]
 
 require './services'
+
+app.constant 'angularMomentConfig',
+  preprocess: 'unix'
 
 app.config ($mdThemingProvider)->
   $mdThemingProvider.theme 'default'
@@ -23,7 +28,9 @@ app.config ($mdThemingProvider)->
     # .warnPalette ''
     # .backgroundPalette ''
 
-app.run ($rootScope,$state,cfpLoadingBar,notify)->
+app.run ($rootScope,$localStorage,$state,cfpLoadingBar,notify)->
+  $rootScope.$storage= $localStorage.$default {voice:'off'}
+  
   $rootScope.$on '$stateChangeStart',->
     cfpLoadingBar.start()
   $rootScope.$on '$stateChangeSuccess',->

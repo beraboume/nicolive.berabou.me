@@ -1,6 +1,6 @@
 return unless window? # No execute for server-side require
 
-module.exports= ($window,$mdDialog,notify,$state)->
+module.exports= ($window,$mdDialog,notify,$state,$timeout)->
   viewModel= this
   viewModel.dialog= (event)->
     options=
@@ -23,5 +23,22 @@ module.exports= ($window,$mdDialog,notify,$state)->
 
       notify '接続しています…'
       $state.go 'root.viewer',storage
+
+  viewModel.voiceNames= []
+  return if viewModel.voiceNames.length
+
+  voices= $window.speechSynthesis?.getVoices() or []
+  if voices.length
+    viewModel.voiceNames.push 'off'
+    for voice in voices when voice.lang is 'ja-JP'
+      viewModel.voiceNames.push voice.name unless voice.name in viewModel.voiceNames
+
+  # polyfill for chrome
+  $window.speechSynthesis.onvoiceschanged= ->
+    return if viewModel.voiceNames.length
+
+    voices= $window.speechSynthesis?.getVoices() or []
+    viewModel.voiceNames.push 'off'
+    viewModel.voiceNames.push voice.name for voice in voices when voice.lang is 'ja-JP'
 
   viewModel

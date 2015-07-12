@@ -9,11 +9,12 @@ md-content.md-whiteframe-z4
 
       div(ng-hide="chat.premium=='3'")
         md-divider(ng-show="$index>0")
-        md-list-item.md-2-line
+        md-list-item.md-2-line(ng-click="viewer.show($event,chat.user_id)")
           img.md-avatar(fetch-avatar="chat.user_id" alt='noimage')
           .md-list-item-text
             h3(fetch-nickname="chat.user_id") {{chat.user_id}}
-            p {{chat.text}}
+            p(read="chat") {{chat.text}}
+            p.md-secondary(am-time-ago="chat.date")
 
   md-list(ng-hide="viewer.chats.length")
     md-list-item

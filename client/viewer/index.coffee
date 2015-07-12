@@ -16,6 +16,7 @@ module.exports.resolve=
           socket.on 'getplayerstatus',(playerStatus)->
             console.log playerStatus
             $rootScope.title= playerStatus.title
+            $rootScope.picture_url= playerStatus.picture_url
 
             resolve socket
 
@@ -42,5 +43,17 @@ module.exports.controller= ($localStorage,server,$window,$timeout)->
       console.log chat_result
 
     viewModel.text= ''
+
+  viewModel.show= (event,userId)->
+    url=
+      if userId.match(/^\d+$/) and userId isnt '900000000'
+        "http://www.nicovideo.jp/user/#{userId}"
+      else
+        null
+
+    if url
+      $window.open url,'user','width=465,height=465'
+
+    return
 
   viewModel
