@@ -1,4 +1,7 @@
 io= require './server/nicolive.io'
 
-io.listen 59798,->
-  console.log 'Listen to http://localhost:59798'
+port= process.env.PORT
+port?= 59798
+
+io.listen port,->
+  console.log 'Listen to http://localhost:'+port
