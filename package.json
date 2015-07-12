@@ -15,7 +15,7 @@
     "express": "^4.13.1",
     "jade": "^1.11.0",
     "kouto-swiss": "^0.11.13",
-    "nicolive.io": "0.0.0",
+    "nicolive.io": "0.0.1",
     "stylus": "^0.51.1"
   }
 }
