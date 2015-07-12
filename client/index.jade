@@ -1,0 +1,18 @@
+doctype
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1.0")
+
+    title nicolive.io
+
+    script(src="/socket.io/socket.io.js")
+
+    script(src="pkgs.js")
+    script(src="index.js")
+    link(rel="stylesheet" href="index.css")
+    
+  body
+    header.md-whiteframe-z4(ui-view='header')
+    main(ui-view='container')
+    footer(ui-view='footer')

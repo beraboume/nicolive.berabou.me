@@ -1,0 +1,88 @@
+// Config angular-animate with animate.css
+body
+  >header
+    fixed 0 0 false 0
+    z-index 500
+    
+  >footer
+    fixed false 0 0 0
+    z-index 500
+    
+  >main
+    padding 6rem 3rem
+    
+    display block
+    position relative
+  
+    &.ng-enter
+    &.ng-leave
+      absolute 0 0 false 0
+      
+    &.ng-enter
+      animation fadeIn .5s
+      z-index 300
+    &.ng-leave
+      animation fadeOut .5s
+
+.chat
+  &.ng-enter
+    animation fadeIn .5s
+  &.ng-leave
+    animation fadeOut .5s
+
+// Config angular-material
+.md-toolbar-tools
+  >[layout]
+    width 100%
+body
+  header
+    h2[flex]
+      overflow ellipsis
+  footer
+    .md-toolbar-tools
+      label
+      input
+        color white
+      
+      .md-input-has-value
+        label
+          visibility hidden
+
+.md-dialog-backdrop
+  fixed 0 0 0 0!important
+  z-index 1000
+  
+.md-dialog-container
+  fixed 0 0 0 0!important
+  
+.md-list-item-text
+  p
+    white-space pre-line
+    word-break break-all
+
+md-checkbox
+  .md-label
+    position absolute
+    height 100%
+    &:before
+      display inline-block
+      vertical-align middle
+      content " "
+      height 100%
+
+// Config md-toast for priority than ui-view
+md-toast
+  position fixed
+  z-index 1000
+
+// Config angular-loading-bar
+#loading-bar .bar
+#loading-bar .peg
+  top auto
+  bottom 0
+  
+#loading-bar-spinner
+  top auto
+  left auto
+  right 10px
+  bottom 10px

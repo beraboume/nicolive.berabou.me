@@ -1,0 +1,18 @@
+md-dialog(aria-label='サーバーへ接続する')
+  form(ng-submit="view.submit()")
+    md-toolbar
+      .md-toolbar-tools
+        h2 サーバーへ接続する
+        span(flex)
+        md-button.md-icon-button(type="button" ng-click="view.cancel()")
+          md-icon(aria-label='Close dialog') close
+    md-dialog-content
+      md-input-container
+        label チャンネルid
+        input(ng-model='view.$storage.id' autofocus)
+      md-input-container
+        label セッション
+        input(ng-model='view.$storage.session')
+    .md-actions(layout='row')
+      md-button.md-primary
+        | 接続する

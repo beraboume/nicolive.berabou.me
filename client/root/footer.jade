@@ -1,0 +1,14 @@
+md-toolbar
+  .md-toolbar-tools
+    form(ng-submit="footer.comment()" layout="row")
+      md-input-container(flex="80")
+        label コメント
+        input(ng-model="footer.text" autofocus)
+      
+      md-checkbox(
+        ng-model="footer.options.mail"
+        ng-true-value="'184'"
+        ng-false-value="''"
+        aria-label="184"
+      )
+        | 184

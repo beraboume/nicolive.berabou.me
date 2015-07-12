@@ -1,0 +1,21 @@
+{
+  "name": "nicolive.berabou.me",
+  "private": true,
+  "version": "0.0.0-alpha",
+  "scripts": {
+    "start": "coffee index.coffee",
+    "build": "onefile --output client/pkgs"
+  },
+  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
+  "license": "MIT",
+  "dependencies": {
+    "browserify-middleware": "^6.0.0",
+    "browserify-plain-jade": "^0.2.2",
+    "coffeeify": "^1.1.0",
+    "express": "^4.13.1",
+    "jade": "^1.11.0",
+    "kouto-swiss": "^0.11.13",
+    "nicolive.io": "0.0.0",
+    "stylus": "^0.51.1"
+  }
+}

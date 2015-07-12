@@ -1,0 +1,21 @@
+md-content.md-whiteframe-z4
+  md-list(ng-show="viewer.chats.length")
+    .chat(ng-repeat="chat in viewer.chats")
+      div(ng-show="chat.premium=='3'")
+        md-divider(ng-show="$index>0")
+        md-list-item.md-2-line
+          .md-list-item-text
+            p {{chat.text}}
+
+      div(ng-hide="chat.premium=='3'")
+        md-divider(ng-show="$index>0")
+        md-list-item.md-2-line
+          img.md-avatar(fetch-avatar="chat.user_id" alt='noimage')
+          .md-list-item-text
+            h3(fetch-nickname="chat.user_id") {{chat.user_id}}
+            p {{chat.text}}
+
+  md-list(ng-hide="viewer.chats.length")
+    md-list-item
+      p
+        | なんもないよ
