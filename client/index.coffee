@@ -28,7 +28,7 @@ app.config ($stateProvider)->
 
 app.config ($stateProvider)->
   $stateProvider.state 'root.viewer',
-    url: '/:id'
+    url: '/:id?sessionId'
     resolve:
       (require './viewer/index').resolve
     views:

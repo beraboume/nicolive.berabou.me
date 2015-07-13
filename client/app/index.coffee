@@ -31,8 +31,17 @@ app.config ($mdThemingProvider)->
 app.run ($rootScope,$localStorage,$state,cfpLoadingBar,notify)->
   $rootScope.$storage= $localStorage.$default {voice:'off'}
   
-  $rootScope.$on '$stateChangeStart',->
+  $rootScope.$on '$stateChangeStart',(event,to,toParams,from,fromParams)->
     cfpLoadingBar.start()
+
+    # nicolive.berabou.me-boot-buttonからのquerystring「?sessionId=」を受け取る
+    if toParams.sessionId
+      event.preventDefault()
+      $localStorage.session= toParams.sessionId
+      delete toParams.sessionId
+      
+      $state.go to,toParams
+
   $rootScope.$on '$stateChangeSuccess',->
     cfpLoadingBar.complete()
   $rootScope.$on '$stateChangeError',(event,toState,toParams,fromState,fromParams,error)->
