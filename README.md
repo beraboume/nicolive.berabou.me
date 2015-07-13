@@ -16,7 +16,7 @@
 
 ![nicolive berabou me-boot-button](https://cloud.githubusercontent.com/assets/1548478/8642349/eee2f638-295d-11e5-9070-bc202cf4da25.png)
 
-> gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.berabou.me-boot-button)をブラウザに導入することで、配信画面の上部メニューの「コメビュ」ボタンから、ダイレクトにnicolive.berabou.meを起動することができます。
+gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.berabou.me-boot-button)をブラウザに導入することで、配信画面の上部メニューの「コメビュ」ボタンから、ダイレクトにnicolive.berabou.meを起動することができます。
 
 License
 ---
