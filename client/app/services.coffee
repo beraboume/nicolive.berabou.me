@@ -4,13 +4,7 @@ return unless window? # No execute for server-side require
 app= angular.module process.env.APP
 
 # Publish services
-app.factory 'socket',(socketFactory,notify)->
-  socket= socketFactory()
-  socket.on 'warn',(error)->
-    notify error
-  socket
-
-app.factory 'notify',($state,$mdToast)->
+app.factory 'notify',($state,$mdToast,$rootScope)->
   (message)->
     simpleToast=
       $mdToast.simple()
@@ -20,7 +14,15 @@ app.factory 'notify',($state,$mdToast)->
 
     $mdToast.show simpleToast
 
+    return if $rootScope.waitForNext
+
     $state.go 'root.top'
+
+app.factory 'socket',(socketFactory,notify)->
+  socket= socketFactory()
+  socket.on 'warn',(error)->
+    notify error
+  socket
 
 app.directive 'autofocus',($timeout)->
   (scope,element)->

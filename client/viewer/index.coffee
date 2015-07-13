@@ -14,7 +14,6 @@ module.exports.resolve=
           socket.emit 'view',decodeURIComponent($stateParams.id),{res_from:100}
           socket.removeAllListeners 'getplayerstatus'
           socket.on 'getplayerstatus',(playerStatus)->
-            console.log playerStatus
             $rootScope.title= playerStatus.title
             $rootScope.picture_url= playerStatus.picture_url
             $rootScope.default_community= playerStatus.default_community
@@ -22,6 +21,7 @@ module.exports.resolve=
             resolve socket
 
 module.exports.controller= (
+  $rootScope
   $localStorage
   server
   $window
@@ -31,20 +31,31 @@ module.exports.controller= (
 )->
   viewModel= this
 
-  server.once 'thread',(thread)->
-
   # 次枠ある？
+  server.removeAllListeners 'end_of_thread'
+  server.removeAllListeners 'current'
   server.once 'end_of_thread',(chat)->
     i= 0
-    intervalId= setInterval ->
-      return clearInterval intervalId if i++>=30 # 5分で再施行停止
+    interval= 1000*10
+    $rootScope.waitForNext= yes
 
-      server.emit 'current'
-    ,1000* 10# sec
-    server.once 'current',(playerStatus)->
-      clearInterval intervalId
+    $timeout ->
+      fetchCurrent()
 
-      $state.go $state.current,playerStatus,{reload:true}
+    fetchCurrent= ->
+      # 5分で再施行停止
+      return $rootScope.waitForNext= no if (not $rootScope.waitForNext) or i++ >= 30
+
+      console.log 'emit current'
+      server.emit 'current',(playerStatus)->
+        console.log playerStatus
+        return unless playerStatus.id
+        $rootScope.waitForNext= no
+
+        if $state.params.id != playerStatus.id
+          $state.go $state.current,playerStatus,{reload:true}
+
+      $timeout fetchCurrent,interval
 
   viewModel.chats= []
   server.removeAllListeners 'chat'

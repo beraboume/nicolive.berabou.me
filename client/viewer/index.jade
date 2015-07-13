@@ -20,3 +20,11 @@ md-content.md-whiteframe-z4
     md-list-item
       p
         | なんもないよ
+
+md-content.md-whiteframe-z4(ng-show="waitForNext")
+  md-divider
+  md-list
+    .chat
+      md-list-item
+        p
+          | 放送が終了しました。５分以内に同じコミュニティで放送があれば、自動的に移動します…。
