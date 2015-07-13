@@ -46,10 +46,8 @@ module.exports.controller= (
       # 5分で再施行停止
       return $rootScope.waitForNext= no if (not $rootScope.waitForNext) or i++ >= 30
 
-      console.log 'emit current'
       server.emit 'current',(playerStatus)->
-        console.log playerStatus
-        return unless playerStatus.id
+        return unless playerStatus?.id
         $rootScope.waitForNext= no
 
         if $state.params.id != playerStatus.id
