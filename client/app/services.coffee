@@ -10,7 +10,7 @@ app.factory 'socket',(socketFactory,notify)->
     notify error
   socket
 
-app.factory 'notify',($mdToast)->
+app.factory 'notify',($state,$mdToast)->
   (message)->
     simpleToast=
       $mdToast.simple()
@@ -19,6 +19,8 @@ app.factory 'notify',($mdToast)->
         .hideDelay 2000
 
     $mdToast.show simpleToast
+
+    $state.go 'root.top'
 
 app.directive 'autofocus',($timeout)->
   (scope,element)->
