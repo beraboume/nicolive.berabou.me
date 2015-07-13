@@ -17,15 +17,34 @@ module.exports.resolve=
             console.log playerStatus
             $rootScope.title= playerStatus.title
             $rootScope.picture_url= playerStatus.picture_url
+            $rootScope.default_community= playerStatus.default_community
 
             resolve socket
 
-module.exports.controller= ($localStorage,server,$window,$timeout)->
+module.exports.controller= (
+  $localStorage
+  server
+  $window
+  $timeout
+  $state
+  reader
+)->
   viewModel= this
 
-  server.removeAllListeners 'thread'
-  server.on 'thread',(thread)->
-    console.log 'thread',thread
+  server.once 'thread',(thread)->
+
+  # 次枠ある？
+  server.once 'end_of_thread',(chat)->
+    i= 0
+    intervalId= setInterval ->
+      return clearInterval intervalId if i++>=30 # 5分で再施行停止
+
+      server.emit 'current'
+    ,1000* 10# sec
+    server.once 'current',(playerStatus)->
+      clearInterval intervalId
+
+      $state.go $state.current,playerStatus,{reload:true}
 
   viewModel.chats= []
   server.removeAllListeners 'chat'
@@ -36,11 +55,8 @@ module.exports.controller= ($localStorage,server,$window,$timeout)->
       $window.scrollBy 0,$window.document.body.clientHeight
 
   viewModel.comment= ->
-    console.log 'comment to',viewModel.text
-
     server.emit 'comment',viewModel.text
     server.once 'chat_result',(chat_result)->
-      console.log chat_result
 
     viewModel.text= ''
 
@@ -55,5 +71,8 @@ module.exports.controller= ($localStorage,server,$window,$timeout)->
       $window.open url,'user','width=465,height=465'
 
     return
+
+  viewModel.read= (text)->
+    reader text
 
   viewModel

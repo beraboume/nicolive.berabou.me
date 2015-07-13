@@ -67,7 +67,19 @@ app.directive 'fetchAvatar',($q)->
       
       element.attr 'src',noimage
 
-app.directive 'read',($window,$localStorage)->
+# readディレクティブのSpeechSynthesisUtteranceをこっちに移動する
+app.factory 'reader',($window,$localStorage)->
+  (text)->
+    speech= new SpeechSynthesisUtterance
+    speech.text=  text
+    speech.lang= 'ja-JP'
+    for voice in $window.speechSynthesis.getVoices() or []
+      continue if voice.name isnt $localStorage.voice
+      speech.voice= voice
+
+    $window.speechSynthesis.speak speech
+
+app.directive 'read',($window,$localStorage,reader)->
   scope:
     chat: '=read'
   link: (scope,element,attrs)->
@@ -84,13 +96,5 @@ app.directive 'read',($window,$localStorage)->
 
       fresh= date*1000>Date.now()-1000 * 10#sec
       if fresh and $window.speechSynthesis
-        speech= new SpeechSynthesisUtterance
-        speech.text=  text
-        speech.lang= 'ja-JP'
-        for voice in $window.speechSynthesis.getVoices() or []
-          continue if voice.name isnt $localStorage.voice
-          speech.voice= voice
-
-        $window.speechSynthesis.speak speech
-
+        reader text
 # etc...

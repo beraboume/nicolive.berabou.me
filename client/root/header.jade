@@ -4,10 +4,17 @@ md-toolbar
       md-icon(ng-hide="picture_url") play_arrow
       img.face(ng-show="picture_url" ng-src="{{picture_url}}")
     h2(flex)
-      | {{title || 'Nicolive.io'}}
+      span(ng-show="!default_community") {{title || 'Nicolive.io'}}
+      md-button(
+        ng-show="default_community"
+        target="_blank"
+        href="http://com.nicovideo.jp/community/{{default_community}}"
+      )
+        | {{title || 'Nicolive.io'}}
 
-    md-select(ng-model='$storage.voice' placeholder='Voice')
+    md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
       md-option(ng-repeat='name in header.voiceNames track by $index' value='{{name}}') {{name}}
 
-    h2
-      md-button(href="https://github.com/59naga/nicolive.io") Fork me on github
+    md-button.md-fab.md-primary.md-mini(href="https://github.com/59naga/nicolive.io")
+      md-icon device_hub
+      md-tooltip Fork me on github

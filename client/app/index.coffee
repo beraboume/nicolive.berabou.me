@@ -47,5 +47,4 @@ app.run ($rootScope,$localStorage,$state,cfpLoadingBar,notify)->
 angular.element(document).ready ->
   angular.bootstrap document,[process.env.APP]
 
-
 module.exports= app
