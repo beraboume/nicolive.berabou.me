@@ -30,7 +30,7 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
   voices= $window.speechSynthesis?.getVoices() or []
   if voices.length
     viewModel.voiceNames.push 'off'
-    for voice in voices when voice.lang is 'ja-JP'
+    for voice in voices
       viewModel.voiceNames.push voice.name unless voice.name in viewModel.voiceNames
 
   # polyfill for chrome
@@ -39,6 +39,6 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
 
     voices= $window.speechSynthesis?.getVoices() or []
     viewModel.voiceNames.push 'off'
-    viewModel.voiceNames.push voice.name for voice in voices when voice.lang is 'ja-JP'
+    viewModel.voiceNames.push voice.name for voice in voices
 
   viewModel

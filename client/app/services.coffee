@@ -70,16 +70,23 @@ app.directive 'fetchAvatar',($q)->
       element.attr 'src',noimage
 
 # readディレクティブのSpeechSynthesisUtteranceをこっちに移動する
-app.factory 'reader',($window,$localStorage)->
+app.factory 'reader',($window,$localStorage,$q,$http)->
   (text)->
     speech= new SpeechSynthesisUtterance
     speech.text=  text
-    speech.lang= 'ja-JP'
     for voice in $window.speechSynthesis.getVoices() or []
       continue if voice.name isnt $localStorage.voice
+      speech.lang= 'ja-JP' if voice.lang is 'ja-JP'
       speech.voice= voice
 
-    $window.speechSynthesis.speak speech
+    return unless speech.voice
+    return $window.speechSynthesis.speak speech if speech.lang is 'ja-JP'
+
+    $http.get 'http://romanize.berabou.me/'+encodeURIComponent(text)
+    .then (response)->
+      speech.text= response.data
+      console.log speech.text
+      $window.speechSynthesis.speak speech
 
 app.directive 'read',($window,$localStorage,reader)->
   scope:
@@ -93,7 +100,7 @@ app.directive 'read',($window,$localStorage,reader)->
     scope.$watch ->
       $localStorage.voice
     ,(newVal)->
-      $window.speechSynthesis.cancel()
+      # $window.speechSynthesis.cancel()
       return if newVal is 'off'
 
       fresh= date*1000>Date.now()-1000 * 10#sec

@@ -13,7 +13,7 @@ md-content.md-whiteframe-z4
           img.md-avatar(ng-click="viewer.show($event,chat.user_id)" fetch-avatar="chat.user_id" alt='noimage')
           .md-list-item-text
             h3(fetch-nickname="chat.user_id") {{chat.user_id}}
-            p(read="chat") {{chat.text}}
+            p(read="chat" ng-click="viewer.read(chat.text)") {{chat.text}}
             p.md-secondary(am-time-ago="chat.date")
 
   md-list(ng-hide="viewer.chats.length")
