@@ -88,7 +88,7 @@ app.factory 'reader',($window,$localStorage,$q,$http)->
       console.log speech.text
       $window.speechSynthesis.speak speech
 
-app.directive 'read',($window,$localStorage,reader)->
+app.directive 'read',($window,$localStorage,reader,$sce)->
   scope:
     chat: '=read'
   link: (scope,element,attrs)->
@@ -100,10 +100,24 @@ app.directive 'read',($window,$localStorage,reader)->
     scope.$watch ->
       $localStorage.voice
     ,(newVal)->
-      # $window.speechSynthesis.cancel()
-      return if newVal is 'off'
+      return $window.speechSynthesis.cancel() if newVal is 'off'
 
       fresh= date*1000>Date.now()-1000 * 10#sec
       if fresh and $window.speechSynthesis
         reader text
+
+app.filter 'parseUrl',($sce)->
+  # ref: http://stackoverflow.com/questions/14692640/angularjs-directive-to-replace-text
+  urlPattern= /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
+
+  (text)->
+    keys=
+      '<':'&lt;'
+      '>':'&gt;'
+      '"':'&quot;'
+      '\'':'&apos;'
+    linked= text.replace /([<>"'])/g,(key)-> keys[key]
+    linked= linked.replace urlPattern,'<a href="#" onclick="angular.element(document.querySelector(\'main\')).scope().outside(event,\'$&\');return false;">$&</a>'
+    $sce.trustAsHtml linked
+
 # etc...

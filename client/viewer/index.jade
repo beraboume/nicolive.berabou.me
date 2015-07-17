@@ -11,9 +11,9 @@ md-content.md-whiteframe-z4
         md-divider(ng-show="$index>0")
         md-list-item.md-2-line
           img.md-avatar(ng-click="viewer.show($event,chat.user_id)" fetch-avatar="chat.user_id" alt='noimage')
-          .md-list-item-text
+          .md-list-item-text(read="chat")
             h3(fetch-nickname="chat.user_id") {{chat.user_id}}
-            p(read="chat" ng-click="viewer.read(chat.text)") {{chat.text}}
+            p(ng-bind-html="chat.text | parseUrl")
             p.md-secondary(am-time-ago="chat.date")
 
   md-list(ng-hide="viewer.chats.length")
@@ -21,10 +21,10 @@ md-content.md-whiteframe-z4
       p
         | なんもないよ
 
-md-content.md-whiteframe-z4(ng-show="waitForNext")
-  md-divider
-  md-list
-    .chat
-      md-list-item
-        p
-          | 放送が終了しました。５分以内に同じコミュニティで放送があれば、自動的に移動します…。
+//- md-content.md-whiteframe-z4(ng-show="waitForNext")
+//-   md-divider
+//-   md-list
+//-     .chat
+//-       md-list-item
+//-         p
+//-           | 放送が終了しました。５分以内に同じコミュニティで放送があれば、自動的に移動します…。

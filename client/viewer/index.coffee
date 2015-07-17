@@ -31,30 +31,6 @@ module.exports.controller= (
 )->
   viewModel= this
 
-  # 次枠ある？
-  server.removeAllListeners 'end_of_thread'
-  server.removeAllListeners 'current'
-  server.once 'end_of_thread',(chat)->
-    i= 0
-    interval= 1000*10
-    $rootScope.waitForNext= yes
-
-    $timeout ->
-      fetchCurrent()
-
-    fetchCurrent= ->
-      # 5分で再施行停止
-      return $rootScope.waitForNext= no if (not $rootScope.waitForNext) or i++ >= 30
-
-      server.emit 'current',(playerStatus)->
-        return unless playerStatus?.id
-        $rootScope.waitForNext= no
-
-        if $state.params.id != playerStatus.id
-          $state.go $state.current,playerStatus,{reload:true}
-
-      $timeout fetchCurrent,interval
-
   viewModel.chats= []
   server.removeAllListeners 'chat'
   server.on 'chat',(chat)->

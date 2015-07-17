@@ -28,8 +28,34 @@ app.config ($mdThemingProvider)->
     # .warnPalette ''
     # .backgroundPalette ''
 
-app.run ($rootScope,$localStorage,$state,cfpLoadingBar,notify)->
+app.run (
+  $rootScope
+  $localStorage
+
+  $window
+  $mdDialog
+
+  $state
+  cfpLoadingBar
+  notify
+)->
   $rootScope.$storage= $localStorage.$default {voice:'off'}
+
+  $rootScope.outside= (event,url)->
+    confirm=
+      $mdDialog.confirm()
+      .title url
+      .content '本当に移動します？'
+      .ariaLabel url
+      .ok 'いいよ'
+      .cancel 'やーめた'
+      .clickOutsideToClose true
+      .parent angular.element document.body
+      .targetEvent event
+
+    $mdDialog.show confirm
+    .then ->
+      $window.open url
   
   $rootScope.$on '$stateChangeStart',(event,to,toParams,from,fromParams)->
     cfpLoadingBar.start()
