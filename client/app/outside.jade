@@ -1,0 +1,13 @@
+md-dialog(aria-label='{{outside.url}}')
+  form(ng-submit="outside.jump()")
+    md-toolbar
+      .md-toolbar-tools
+        h2 {{outside.url}}
+        span(flex)
+        md-button.md-icon-button(type="button" ng-click="outside.cancel()")
+          md-icon(aria-label='Close dialog') close
+    md-dialog-content
+      p 本当に移動するん？
+    .md-actions(layout='row')
+      md-button.md-primary
+        | ええよ
