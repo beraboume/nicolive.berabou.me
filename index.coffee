@@ -1,7 +1,8 @@
+# Environment
+process.env.PORT?= 59798
+process.env.DOCKER_IP?= 'localhost'# for redis
+
+# Boot
 io= require './server/nicolive.io'
-
-port= process.env.PORT
-port?= 59798
-
-io.listen port,->
-  console.log 'Listen to http://localhost:'+port
+io.listen process.env.PORT,->
+  console.log 'Listen to http://localhost:'+process.env.PORT

@@ -1,5 +1,6 @@
 # Dependencies
 NicoliveIo= (require 'nicolive.io').NicoliveIo
+socketIoRedis= require 'socket.io-redis'
 express= require 'express'
 browserify= require 'browserify-middleware'
 stylus= require 'stylus'
@@ -65,4 +66,8 @@ app.get '/index.css',(req,res)->
     res.set 'Content-length',Buffer.byteLength css,'utf8'
     res.end css
 
-module.exports= new NicoliveIo app
+# Setup socket.io
+nicoliveIo= new NicoliveIo app
+nicoliveIo.adapter socketIoRedis host:process.env.DOCKER_IP,port:'6379'
+
+module.exports= nicoliveIo
