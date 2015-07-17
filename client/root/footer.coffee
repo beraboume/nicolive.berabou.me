@@ -1,13 +1,12 @@
 return unless window? # No execute for server-side require
 
-module.exports= (socket)->
+module.exports= ($localStorage,socket)->
   viewModel= this
 
-  viewModel.options=
-    mail: '184'
+  viewModel.$storage= $localStorage.$default {chat:{mail:'184'}}
 
   viewModel.comment= ->
-    socket.emit 'comment',viewModel.text,viewModel.options
+    socket.emit 'comment',viewModel.text,viewModel.$storage.chat
 
     viewModel.text= ''
   

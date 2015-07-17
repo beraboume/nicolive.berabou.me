@@ -1,4 +1,3 @@
-// Config angular-animate with animate.css
 body
   >header
     fixed 0 0 false 0
@@ -13,17 +12,22 @@ body
     
     display block
     position relative
-  
+    
+    //著者名の右寄せ
+    footer
+      text-align right
+    
+    // クロスフェード
     &.ng-enter
     &.ng-leave
       absolute 0 0 false 0
-      
     &.ng-enter
       animation fadeIn .5s
       z-index 300
     &.ng-leave
       animation fadeOut .5s
 
+// 新規コメントのフェードイン処理
 .chat
   &.ng-enter
     animation fadeIn .5s
@@ -40,8 +44,10 @@ body
 body
   header
     h2[flex]
+      //長すぎる配信タイトルの省略
       overflow ellipsis
     button
+      //コミュ画像の拡縮
       img
         width 100%
         height auto
@@ -61,7 +67,12 @@ body
   
 .md-dialog-container
   fixed 0 0 0 0!important
-  
+
+md-list
+md-list *
+md-list-item *
+  cursor initial
+
 .md-list-item-text
   margin-right 3em
   p
