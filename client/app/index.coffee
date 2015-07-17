@@ -42,20 +42,19 @@ app.run (
   $rootScope.$storage= $localStorage.$default {voice:'off'}
 
   $rootScope.outside= (event,url)->
-    confirm=
-      $mdDialog.confirm()
-      .title url
-      .content '本当に移動します？'
-      .ariaLabel url
-      .ok 'いいよ'
-      .cancel 'やーめた'
-      .clickOutsideToClose true
-      .parent angular.element document.body
-      .targetEvent event
+    options=
+      locals: {url}
+      template: require './outside.jade'
+      controller: require './outside.coffee'
+      controllerAs: 'outside'
+      bindToController: yes
 
-    $mdDialog.show confirm
-    .then ->
-      $window.open url
+      focusOnOpen: false
+      clickOutsideToClose: true
+      parent: angular.element document.body
+      targetEvent: event
+
+    $mdDialog.show options
   
   $rootScope.$on '$stateChangeStart',(event,to,toParams,from,fromParams)->
     cfpLoadingBar.start()
