@@ -18,7 +18,7 @@
     "jade": "^1.11.0",
     "kouto-swiss": "^0.11.13",
     "nicolive.io": "^0.0.2-alpha",
-    "onefile": "^0.2.13",
+    "onefile": "^0.3.0-beta.5",
     "romanizer": "0.0.0-alpha",
     "stylus": "^0.51.1"
   }
