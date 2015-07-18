@@ -25,12 +25,10 @@ app.factory 'voices',($window)->
       speechSynthesis.onvoiceschanged= ->
         voices.push voice for voice in speechSynthesis.getVoices()
 
-  # audio context is available?
-  if ($window.AudioContext or $window.webkitAudioContext)
-    voices= (
-      for voice in ['hikari','haruka','show','takeru','santa','bear']
-        {lang:'ja-VT',name:voice}
-    ).concat voices
+  voices= (
+    for voice in ['hikari','haruka','show','takeru','santa','bear']
+      {lang:'ja-VT',name:voice}
+  ).concat voices
 
   voices.unshift {name:'off'}
 
