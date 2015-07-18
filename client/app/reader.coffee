@@ -25,8 +25,7 @@ app.factory 'voices',($window)->
       speechSynthesis.onvoiceschanged= ->
         voices.push voice for voice in speechSynthesis.getVoices()
 
-  for voice in ['hikari','show','haruka','takeru','santa','bear']
-    voices.unshift {lang:'ja-VT',name:voice}
+  voices= ['hikari','haruka','show','takeru','santa','bear'].concat voices
 
   voices.unshift {name:'off'}
 
