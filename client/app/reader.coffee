@@ -25,10 +25,12 @@ app.factory 'voices',($window)->
       speechSynthesis.onvoiceschanged= ->
         voices.push voice for voice in speechSynthesis.getVoices()
 
-  voices= (
-    for voice in ['hikari','show','haruka','takeru','santa','bear']
-      {lang:'ja-VT',name:voice}
-  ).concat voices
+  # audio context is available?
+  if ($window.AudioContext or $window.webkitAudioContext)
+    voices= (
+      for voice in ['hikari','haruka','show','takeru','santa','bear']
+        {lang:'ja-VT',name:voice}
+    ).concat voices
 
   voices.unshift {name:'off'}
 
@@ -74,30 +76,11 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
 
 # TODO: 複数のコメントを同時に読み上げるので、キューを実装したい
 app.factory 'Voicetext',($window,$http)->
-  AudioContext= ($window.AudioContext or $window.webkitAudioContext)
-  audioContext= new AudioContext
-
   url= 'http://voicetext.berabou.me/'
 
   class Voicetext
     constructor: (@text,@speaker='hikari')->
-      $http
-        method: 'GET'
-        url: url+encodeURIComponent(@text.slice(0,200))
-        params:
-          speaker: @speaker
-        responseType:'arraybuffer'
-      .then (response)=>
-        console.log response
-        audioContext.decodeAudioData response.data,(buffer)=>
-          @buffer= buffer
-          @play() if @autoplay
-
-    play: ->
-      return if @coolTime?
-      return @autoplay= on unless @buffer?
-
-      source= audioContext.createBufferSource();
-      source.buffer= @buffer
-      source.connect audioContext.destination
-      source.start 0
+      audio= document.createElement 'audio'
+      audio.src= url+encodeURIComponent(@text.slice(0,200))
+      audio.autoplay= yes
+      audio.load()
