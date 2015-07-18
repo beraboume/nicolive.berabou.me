@@ -20,6 +20,10 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+平成２７年７月１８日（土）
+---
+* [VoiceText Web API](https://cloud.voicetext.jp/webapi)を使用して読み上げ出来るようにボイスを追加
+
 平成２７年７月１７日（金）
 ---
 * コメント中のURLをクリックで開けるように修正

@@ -24,21 +24,4 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
       notify '接続しています…'
       $state.go 'root.viewer',storage
 
-  viewModel.voiceNames= []
-  return if viewModel.voiceNames.length
-
-  voices= $window.speechSynthesis?.getVoices() or []
-  if voices.length
-    viewModel.voiceNames.push 'off'
-    for voice in voices
-      viewModel.voiceNames.push voice.name unless voice.name in viewModel.voiceNames
-
-  # polyfill for chrome
-  $window.speechSynthesis.onvoiceschanged= ->
-    return if viewModel.voiceNames.length
-
-    voices= $window.speechSynthesis?.getVoices() or []
-    viewModel.voiceNames.push 'off'
-    viewModel.voiceNames.push voice.name for voice in voices
-
   viewModel

@@ -69,43 +69,6 @@ app.directive 'fetchAvatar',($q)->
       
       element.attr 'src',noimage
 
-# readディレクティブのSpeechSynthesisUtteranceをこっちに移動する
-app.factory 'reader',($window,$localStorage,$q,$http)->
-  (text)->
-    speech= new SpeechSynthesisUtterance
-    speech.text=  text
-    for voice in $window.speechSynthesis.getVoices() or []
-      continue if voice.name isnt $localStorage.voice
-      speech.lang= 'ja-JP' if voice.lang is 'ja-JP'
-      speech.voice= voice
-
-    return unless speech.voice
-    return $window.speechSynthesis.speak speech if speech.lang is 'ja-JP'
-
-    $http.get 'http://romanize.berabou.me/'+encodeURIComponent(text)
-    .then (response)->
-      speech.text= response.data
-      console.log speech.text
-      $window.speechSynthesis.speak speech
-
-app.directive 'read',($window,$localStorage,reader,$sce)->
-  scope:
-    chat: '=read'
-  link: (scope,element,attrs)->
-    {date,text}= scope.chat
-    speech= null
-
-    return unless $window.speechSynthesis
-
-    scope.$watch ->
-      $localStorage.voice
-    ,(newVal)->
-      return $window.speechSynthesis.cancel() if newVal is 'off'
-
-      fresh= date*1000>Date.now()-1000 * 10#sec
-      if fresh and $window.speechSynthesis
-        reader text
-
 app.filter 'parseUrl',($sce)->
   # ref: http://stackoverflow.com/questions/14692640/angularjs-directive-to-replace-text
   urlPattern= /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;

@@ -17,6 +17,7 @@ app= angular.module process.env.APP,[
 ]
 
 require './services'
+require './reader'
 
 app.constant 'angularMomentConfig',
   preprocess: 'unix'
@@ -31,6 +32,7 @@ app.config ($mdThemingProvider)->
 app.run (
   $rootScope
   $localStorage
+  voices
 
   $window
   $mdDialog
@@ -40,6 +42,7 @@ app.run (
   notify
 )->
   $rootScope.$storage= $localStorage.$default {voice:'off'}
+  $rootScope.voices= voices
 
   $rootScope.outside= (event,url)->
     options=

@@ -58,6 +58,6 @@ module.exports.controller= (
     return
 
   viewModel.read= (text)->
-    reader text
+    reader.read text
 
   viewModel
