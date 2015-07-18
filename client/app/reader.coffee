@@ -49,7 +49,6 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
 
       if voice.lang is 'ja-VT'
         voice= new Voicetext text,voice.name
-        voice.play()
 
         console.log voice
 
@@ -82,3 +81,5 @@ app.factory 'Voicetext',($window,$http)->
       audio.src= url+encodeURIComponent(@text.slice(0,200))
       audio.autoplay= yes
       audio.load()
+
+  Voicetext
