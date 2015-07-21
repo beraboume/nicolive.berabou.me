@@ -1,0 +1,11 @@
+md-dialog(aria-label='棒読み設定')
+  form(ng-submit="setting.submit()")
+    md-toolbar
+      .md-toolbar-tools
+        h2 読み上げ設定
+        span(flex)
+        md-button.md-icon-button(type="button" ng-click="setting.close()")
+          md-icon(aria-label='Close dialog') close
+    md-dialog-content
+      md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
+        md-option(ng-repeat='voice in voices' value='{{voice.name}}') {{voice.name}}

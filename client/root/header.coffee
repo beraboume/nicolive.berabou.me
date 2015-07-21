@@ -24,4 +24,17 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
       notify '接続しています…'
       $state.go 'root.viewer',storage
 
+  viewModel.setting= (event)->
+    options=
+      template: require './setting.jade'
+      controller: require './setting.coffee'
+      controllerAs: 'setting'
+
+      focusOnOpen: false
+      clickOutsideToClose: true
+      parent: angular.element document.body
+      targetEvent: event
+
+    $mdDialog.show options
+
   viewModel

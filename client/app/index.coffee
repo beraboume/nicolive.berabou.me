@@ -18,6 +18,8 @@ app= angular.module process.env.APP,[
 
 require './services'
 require './reader'
+require './sound'
+require './sound-enabler'
 
 app.constant 'angularMomentConfig',
   preprocess: 'unix'

@@ -9,6 +9,8 @@ body
     
   >main
     padding 6rem 3rem
+    +media-query(all,max-width 640px)
+      padding 64px 0
     
     display block
     position relative
@@ -26,6 +28,10 @@ body
       z-index 300
     &.ng-leave
       animation fadeOut .5s
+
+//iPhoneだとbodyに余白が無いので追記
+md-content.top
+  padding 1em
 
 // 新規コメントのフェードイン処理
 .chat
