@@ -24,6 +24,7 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 ---
 * iPhoneでも読み上げが再生できるようにtouchstartに無音ファイルを再生する処理を追記
 * wav -> aacに変更
+* コメント入力欄の autofocus を除去（初回タップ時にバーチャルキーボードが出る）
 
 平成２７年７月１８日（土）
 ---
