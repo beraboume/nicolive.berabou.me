@@ -72,12 +72,12 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
   new Reader
 
 # TODO: 複数のコメントを同時に読み上げるので、directiveのキューを実装したい
-app.factory 'Voicetext',(Sound)->
+app.factory 'Voicetext',(Sound,$localStorage)->
   url= 'http://voicetext.berabou.me/'
 
   class Voicetext
     constructor: (@text,@speaker='hikari')->
-      sound= new Sound url+encodeURIComponent(@text.slice(0,200))
+      sound= new Sound url+encodeURIComponent(@text.slice(0,200))+'?speaker='+$localStorage.voice
       sound.play()
 
   Voicetext
