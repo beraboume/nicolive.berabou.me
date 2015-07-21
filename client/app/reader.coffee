@@ -46,11 +46,11 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
 
   class Reader
     read: (text)->
-      voice= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
+      speaker= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
 
-      return unless voice?.lang
+      return unless speaker?.lang
 
-      if voice.lang is 'ja-VT'
+      if speaker.lang is 'ja-VT'
         voice= new Voicetext text,$localStorage.reader
 
         console.log voice
@@ -58,7 +58,7 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
       else
         speech= new SpeechSynthesisUtterance
         speech.text= text
-        speech.lang= 'ja-JP' if voice.lang is 'ja-JP'
+        speech.lang= 'ja-JP' if speaker.lang is 'ja-JP'
         speech.voice= speaker
         speech.volume= $localStorage.reader.volume / 100
         speech.pitch= $localStorage.reader.pitch / 100
