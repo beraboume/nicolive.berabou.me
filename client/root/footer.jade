@@ -3,7 +3,7 @@ md-toolbar
     form(ng-submit="footer.comment()" layout="row")
       md-input-container(flex="80")
         label コメント
-        input(ng-model="footer.text" autofocus)
+        input(ng-model="footer.text")
       
       md-checkbox(
         ng-model="footer.$storage.chat.mail"

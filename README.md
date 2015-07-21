@@ -20,6 +20,11 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+平成２７年７月２２日（土）
+---
+* iPhoneでも読み上げが再生できるようにtouchstartに無音ファイルを再生する処理を追記
+* wav -> aacに変更
+
 平成２７年７月１８日（土）
 ---
 * [VoiceText Web API](https://cloud.voicetext.jp/webapi)を使用して読み上げ出来るようにボイスを追加
