@@ -50,7 +50,7 @@ app.run (
       speed: 100
       volume: 100
       emotion: ''
-      emotion_level: ''
+      emotion_level: 1
   }
   $rootScope.voices= voices
 
