@@ -22,12 +22,15 @@ app.factory 'voices',($window)->
     voices.push voice for voice in speechSynthesis.getVoices()
 
     unless voices.length
+      loaded= null
       speechSynthesis.onvoiceschanged= ->
+        return if loaded
         voices.push voice for voice in speechSynthesis.getVoices()
+        loaded= yes
 
   voices= (
     for voice in ['hikari','haruka','show','takeru','santa','bear']
-      {lang:'ja-VT',name:voice}
+      {lang:'ja-VT',name:voice,emotionable:(voice isnt 'show')}
   ).concat voices
 
   voices.unshift {name:'off'}
@@ -43,12 +46,12 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
 
   class Reader
     read: (text)->
-      voice= (voice for voice in voices when voice.name is $localStorage.voice)[0]
+      voice= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
 
       return unless voice?.lang
 
       if voice.lang is 'ja-VT'
-        voice= new Voicetext text,voice.name
+        voice= new Voicetext text,$localStorage.reader
 
         console.log voice
 
@@ -56,7 +59,10 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
         speech= new SpeechSynthesisUtterance
         speech.text= text
         speech.lang= 'ja-JP' if voice.lang is 'ja-JP'
-        speech.voice= voice
+        speech.voice= speaker
+        speech.volume= $localStorage.reader.volume / 100
+        speech.pitch= $localStorage.reader.pitch / 100
+        speech.speed= $localStorage.reader.speed / 100
 
         if speech.lang is 'ja-JP'
           speechSynthesis.speak speech
@@ -76,8 +82,18 @@ app.factory 'Voicetext',(Sound,$localStorage)->
   url= 'http://voicetext.berabou.me/'
 
   class Voicetext
-    constructor: (@text,@speaker='hikari')->
-      sound= new Sound url+encodeURIComponent(@text.slice(0,200))+'?speaker='+$localStorage.voice
+    constructor: (@text,params)->
+      params= JSON.parse JSON.stringify params
+      params.emotion_level= '' if params.emotion is ''
+
+      text= encodeURIComponent @text.slice 0,200
+      querystring= (
+        for key,value of params
+          encodeURIComponent(key)+'='+encodeURIComponent(value)
+      ).join('&')
+
+      uri= url+text+'?'+querystring
+      sound= new Sound uri
       sound.play()
 
   Voicetext

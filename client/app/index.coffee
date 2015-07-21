@@ -43,7 +43,15 @@ app.run (
   cfpLoadingBar
   notify
 )->
-  $rootScope.$storage= $localStorage.$default {voice:'off'}
+  $rootScope.$storage= $localStorage.$default {
+    reader:
+      voice: 'off'
+      pitch: 100
+      speed: 100
+      volume: 100
+      emotion: ''
+      emotion_level: ''
+  }
   $rootScope.voices= voices
 
   $rootScope.outside= (event,url)->

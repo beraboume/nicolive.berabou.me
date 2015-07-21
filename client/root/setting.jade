@@ -1,11 +1,87 @@
-md-dialog(aria-label='棒読み設定')
-  form(ng-submit="setting.submit()")
+md-dialog(aria-label='読みあげ')
+  form(ng-submit="setting.read()")
     md-toolbar
       .md-toolbar-tools
-        h2 読み上げ設定
+        h2 読みあげ
         span(flex)
         md-button.md-icon-button(type="button" ng-click="setting.close()")
           md-icon(aria-label='Close dialog') close
+
     md-dialog-content
-      md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
-        md-option(ng-repeat='voice in voices' value='{{voice.name}}') {{voice.name}}
+      md-input-container
+        label テスト文章
+        input(ng-model="setting.words")
+
+      div
+        h3 オプション
+
+        .md-mini(layout)
+          .md-body-1(flex="40") 話者
+          md-select(ng-model='setting.$storage.reader.speaker' placeholder='Voice')
+            md-option(ng-repeat='voice in setting.voices' value='{{voice.name}}') {{voice.name}}
+
+        .md-mini(layout)
+          .md-body-1(flex="40") 音量
+          md-slider(
+            flex
+
+            md-discrete
+            step="10"
+            min='50'
+            max='200'
+            ng-model="setting.$storage.reader.volume"
+
+            aria-label='volume'
+          )
+
+        .md-mini(layout)
+          .md-body-1(flex="40") ピッチ
+          md-slider(
+            flex
+
+            md-discrete
+            step="10"
+            min='50'
+            max='200'
+            ng-model="setting.$storage.reader.pitch"
+
+            aria-label='pitch'
+          )
+
+        .md-mini(layout)
+          .md-body-1(flex="40") スピード
+          md-slider(
+            flex
+
+            md-discrete
+            step="10"
+            min='50'
+            max='400'
+            ng-model="setting.$storage.reader.speed"
+
+            aria-label='speed'
+          )
+      
+      div(ng-show="setting.voice.emotionable")
+        h3 VoiceTextオプション
+
+        .md-mini(layout)
+          .md-body-1(flex="40") 感情
+          md-select(ng-model='setting.$storage.reader.emotion' placeholder='Emotion')
+            md-option(value='' selected) ふつう
+            md-option(value='happiness') 楽しい
+            md-option(value='anger') 怒り
+            md-option(value='sadness') 悲しい
+
+        .md-mini(layout)
+          .md-body-1(flex="40") 感情レベル
+          md-slider(
+            flex
+
+            md-discrete
+            min='1'
+            max='4'
+            ng-model="setting.$storage.reader.emotion_level"
+
+            aria-label='emotion_level'
+          )

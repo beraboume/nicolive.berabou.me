@@ -12,8 +12,12 @@ md-toolbar
       )
         | {{title || 'Nicolive.io'}}
 
-    md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
-      md-option(ng-repeat='voice in voices' value='{{voice.name}}') {{voice.name}}
+    md-button.md-fab.md-primary.md-mini(ng-click="header.setting($event)")
+      md-icon volume_up
+      md-tooltip Setting
+
+    //- md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
+    //-   md-option(ng-repeat='voice in voices' value='{{voice.name}}') {{voice.name}}
 
     md-button.md-fab.md-primary.md-mini(href="https://github.com/59naga/nicolive.io")
       md-icon device_hub

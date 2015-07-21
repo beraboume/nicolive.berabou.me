@@ -31,7 +31,6 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
       controllerAs: 'setting'
 
       focusOnOpen: false
-      clickOutsideToClose: true
       parent: angular.element document.body
       targetEvent: event
 
