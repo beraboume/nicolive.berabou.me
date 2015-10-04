@@ -20,6 +20,11 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+平成２７年１０月４日（日）
+---
+* 修正：URLのリンク化が主コメント時にも適用
+* 追加：コメント番号をコメント欄の右端へ
+
 平成２７年７月２２日（土）
 ---
 * iPhoneでも読み上げが再生できるようにtouchstartに無音ファイルを再生する処理を追記

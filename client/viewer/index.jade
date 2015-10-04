@@ -5,7 +5,7 @@ md-content.md-whiteframe-z4
         md-divider(ng-show="$index>0")
         md-list-item.md-2-line
           .md-list-item-text
-            p {{chat.text}}
+            p(ng-bind-html="chat.text | parseUrl") {{chat.text}}
 
       div(ng-hide="chat.premium=='3'")
         md-divider(ng-show="$index>0")
@@ -14,7 +14,9 @@ md-content.md-whiteframe-z4
           .md-list-item-text(read="chat")
             h3(fetch-nickname="chat.user_id") {{chat.user_id}}
             p(ng-bind-html="chat.text | parseUrl")
-            p.md-secondary(am-time-ago="chat.date")
+            footer.md-secondary
+              p: small {{chat.no}}
+              p(am-time-ago="chat.date")
 
   md-list(ng-hide="viewer.chats.length")
     md-list-item
