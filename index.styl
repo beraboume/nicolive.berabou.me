@@ -11,8 +11,10 @@ body
   >main
     min-height 100%
     padding 6rem 3rem
-    +media-query(all,max-width 640px)
+    +media-query(all, max-width 600px)
       padding 64px 0
+    +media-query(all, max-width 600px, orientation landscape)
+      padding 48px 0
     
     display block
     position relative
