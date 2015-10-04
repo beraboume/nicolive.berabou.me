@@ -5,7 +5,8 @@ md-content.md-whiteframe-z4
         md-divider(ng-show="$index>0")
         md-list-item.md-2-line
           .md-list-item-text
-            p(ng-bind-html="chat.text | parseUrl") {{chat.text}}
+            section
+              p(ng-bind-html="chat.text | parseUrl") {{chat.text}}
             footer.md-secondary
               p: small {{chat.no}}
               p(am-time-ago="chat.date")
@@ -16,7 +17,8 @@ md-content.md-whiteframe-z4
           img.md-avatar(ng-click="viewer.show($event,chat.user_id)" fetch-avatar="chat.user_id" alt='noimage')
           .md-list-item-text(read="chat")
             h3(fetch-nickname="chat.user_id") {{chat.user_id}}
-            p(ng-bind-html="chat.text | parseUrl")
+            section
+              p(ng-bind-html="chat.text | parseUrl")
             footer.md-secondary
               p: small {{chat.no}}
               p(am-time-ago="chat.date")

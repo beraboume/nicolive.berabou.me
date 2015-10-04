@@ -1,5 +1,3 @@
-return unless window? # No execute for server-side require
-
 module.exports= ($window,$mdDialog,notify,$state,$timeout)->
   viewModel= this
   viewModel.dialog= (event)->
@@ -15,7 +13,7 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
 
     $mdDialog.show options
     .then (storage)->
-      id= storage.id
+      id= storage.id ? ''
       id= id.match(/lv\d+/)[0] if id.match(/lv\d+/)
       id= id.match(/co\d+/)[0] if id.match(/co\d+/)
       id= id.match(/watch\/([\w\/]+)/)[1] if id.match(/watch\/([\w\/]+)/)

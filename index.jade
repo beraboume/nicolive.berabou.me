@@ -1,19 +1,20 @@
-doctype
+doctype html
 html(lang="en")
   head
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no")
 
-    title nicolive.io
+    title(ng-bind="title + 'nicolive.io'") nicolive.io
 
     script(src="/socket.io/socket.io.js")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=latin,latin-ext" rel="stylesheet")
 
     script(src="pkgs.js")
     script(src="index.js")
-    link(rel="stylesheet" href="index.css")
+    link(href="index.css" rel="stylesheet")
     
-  body
+  body(flex)
     header.md-whiteframe-z4(ui-view='header')
     main(ui-view='container')
     footer(ui-view='footer')

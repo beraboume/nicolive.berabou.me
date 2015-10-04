@@ -1,5 +1,3 @@
-return unless window? # No execute for server-side require
-
 # Dependencies
 app= angular.module process.env.APP
 

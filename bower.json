@@ -6,13 +6,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "animate.css": "~3.3.0",
-    "ngstorage": "~0.3.7",
+    "animate.css": "~3.4.0",
+    "ngstorage": "~0.3.9",
     "angular-ui-router": "~0.2.15",
     "angular-socket-io": "~0.7.0",
     "angular-loading-bar": "~0.8.0",
-    "angular-material": "~0.10.0",
-    "angular-moment": "~0.10.1"
+    "angular-material": "~0.11.2",
+    "angular-moment": "~0.10.3"
   },
   "overrides": {
     "moment": {

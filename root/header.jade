@@ -1,24 +1,18 @@
 md-toolbar
   .md-toolbar-tools
-    md-button.md-icon-button(ng-click="header.dialog($event)" aria-label='View')
+    md-button.md-icon-button(aria-label='View' ng-click="header.dialog($event)")
       md-icon(ng-hide="picture_url") play_arrow
       img.face(ng-show="picture_url" ng-src="{{picture_url}}")
-    h2(flex)
+    h2
       span(ng-show="!default_community") {{title || 'Nicolive.io'}}
       md-button(
         ng-show="default_community"
         target="_blank"
-        href="http://com.nicovideo.jp/community/{{default_community}}"
+        ng-href="http://com.nicovideo.jp/community/{{default_community}}"
       )
         | {{title || 'Nicolive.io'}}
 
-    md-button.md-fab.md-primary.md-mini(ng-click="header.setting($event)")
+    span(flex)
+    md-button.md-icon-button(aria-label='Reader' ng-click="header.setting($event)")
       md-icon volume_up
-      md-tooltip Setting
-
-    //- md-select(flex="20" ng-model='$storage.voice' placeholder='Voice')
-    //-   md-option(ng-repeat='voice in voices' value='{{voice.name}}') {{voice.name}}
-
-    md-button.md-fab.md-primary.md-mini(href="https://github.com/59naga/nicolive.io")
-      md-icon device_hub
-      md-tooltip Fork me on github
+      md-tooltip Reader

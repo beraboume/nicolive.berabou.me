@@ -1,5 +1,3 @@
-return unless window? # No execute for server-side require
-
 module.exports= ($window,$mdDialog)->
   viewModel= this
   viewModel.jump= ->

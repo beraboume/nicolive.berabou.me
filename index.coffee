@@ -1,4 +1,5 @@
-return unless window? # No execute for server-side require
+# Environment
+process.env.APP= 'nicolive.io'
 
 # Dependencies
 app= require './app'

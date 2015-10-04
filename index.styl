@@ -7,7 +7,9 @@ body
     fixed false 0 0 0
     z-index 500
     
+  box-sizing-reset()
   >main
+    min-height 100%
     padding 6rem 3rem
     +media-query(all,max-width 640px)
       padding 64px 0
@@ -33,6 +35,17 @@ body
 md-content.top
   padding 1em
 
+.top
+  absolute 0 5vw 0 5vw
+  margin auto
+  height 70vh
+  overflow hidden
+  h2
+    font-family 'Lobster',cursive
+    text-align center
+  p
+    margin .25em 0
+
 // 新規コメントのフェードイン処理
 .chat
   &.ng-enter
@@ -45,11 +58,11 @@ md-content.top
   z-index 600
   
 .md-toolbar-tools
-  >[layout]
+  >.md-layout-row
     width 100%
 body
   header
-    h2[flex]
+    h2.flex-flex
       //長すぎる配信タイトルの省略
       overflow ellipsis
     button
@@ -79,12 +92,33 @@ md-list *
 md-list-item *
   cursor initial
 
+  .md-2-line
+    height auto
+    margin .25em 0
+
 .md-list-item-text
   margin-right 3em
+  section
+    padding-right 5em
+  
   p
     white-space pre-line
     word-break break-all
-  
+
+body
+  >footer
+    md-input-container
+      transition opacity 1s ease-out
+      label
+        opacity 1
+      &.md-input-focused
+        label
+          opacity 0
+
+.md-button
+  text-transform none
+
+// Fix footer checkbox
 md-checkbox
   .md-label
     position absolute

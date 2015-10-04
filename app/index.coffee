@@ -1,8 +1,3 @@
-return unless window? # No execute for server-side require
-
-# Environment
-process.env.APP= 'nicolive.io'
-
 # Setup angular module
 app= angular.module process.env.APP,[
   'angular-loading-bar'

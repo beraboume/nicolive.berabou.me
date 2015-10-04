@@ -4,10 +4,8 @@ dhs= require 'difficult-http-server'
 NicoliveIo= (require 'nicolive.io').NicoliveIo
 socketIoRedis= require 'socket.io-redis'
 
-path= require 'path'
-
 # Environment
-cwd= path.join __dirname,'client'
+cwd= __dirname
 bundleExternal= yes
 process.env.DOCKER_IP?= 'localhost'# for redis
 process.env.PORT?= 59798

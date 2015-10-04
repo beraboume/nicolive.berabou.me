@@ -1,5 +1,3 @@
-return unless window? # No execute for server-side require
-
 module.exports= ($scope,$localStorage,$mdDialog,voices,reader)->
   viewModel= this
   viewModel.words= 'ゆっくりしていってね'
