@@ -23,6 +23,10 @@ md-content.md-whiteframe-z4
               p: small {{chat.no}}
               p(am-time-ago="chat.date")
 
+      footer.debug(ng-show=process.env.NODE_ENV=='production'? 'false': 'true')
+        pre {{chat | json}}
+
+
   md-list(ng-hide="viewer.chats.length")
     md-list-item
       p

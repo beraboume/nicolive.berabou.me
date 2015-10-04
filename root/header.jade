@@ -3,7 +3,7 @@ md-toolbar
     md-button.md-icon-button(aria-label='View' ng-click="header.dialog($event)")
       md-icon(ng-hide="picture_url") play_arrow
       img.face(ng-show="picture_url" ng-src="{{picture_url}}")
-    h2
+    h2(flex)
       span(ng-show="!default_community") {{title || 'Nicolive.io'}}
       md-button(
         ng-show="default_community"
@@ -12,7 +12,6 @@ md-toolbar
       )
         | {{title || 'Nicolive.io'}}
 
-    span(flex)
     md-button.md-icon-button(aria-label='Reader' ng-click="header.setting($event)")
       md-icon volume_up
       md-tooltip Reader

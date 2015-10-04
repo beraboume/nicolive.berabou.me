@@ -1,0 +1,96 @@
+/*
+  Config angular-loading-bar
+*/
+#loading-bar-spinner
+  left auto
+  right 10px
+
+/*
+  Config angular-material
+*/
+.md-select-menu-container
+  z-index 600
+  
+.md-toolbar-tools
+  >.md-layout-row
+    width 100%
+body
+  header
+    h2
+      //長すぎる配信タイトルの省略
+      overflow ellipsis
+    button
+      //コミュ画像の拡縮
+      img
+        width 100%
+        height auto
+  footer
+    .md-toolbar-tools
+      label
+      input
+        color white
+      
+      .md-input-has-value
+        label
+          visibility hidden
+
+.md-dialog-backdrop
+  fixed 0 0 0 0!important
+  z-index 1000
+  
+.md-dialog-container
+  fixed 0 0 0 0!important
+
+md-list
+md-list *
+md-list-item *
+  cursor initial
+
+  .md-2-line
+    height auto
+    margin .25em 0
+
+.md-list-item-text
+  margin-right 3em
+  section
+    padding-right 5em
+  
+  p
+    white-space pre-line
+    word-break break-all
+
+body
+  >footer
+    md-input-container
+      transition opacity 1s ease-out
+      label
+        opacity 1
+      &.md-input-focused
+        label
+          opacity 0
+
+.md-button
+  text-transform none
+
+// Fix footer checkbox
+md-checkbox
+  .md-label
+    position absolute
+    height 100%
+    &:before
+      display inline-block
+      vertical-align middle
+      content " "
+      height 100%
+      
+md-dialog
+  md-input-container
+    padding-bottom 0
+  .md-mini:first-of-type
+    md-select
+      padding-top 0
+
+// Config md-toast for priority than ui-view
+md-toast
+  position fixed
+  z-index 1000

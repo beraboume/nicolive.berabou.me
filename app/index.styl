@@ -1,0 +1,70 @@
+/*
+  Routes
+*/
+
+footer.debug
+  text-align left
+  font-family 'Monaco',monospace
+  padding 0 1em
+
+body
+  >header
+    fixed 0 0 false 0
+    z-index 500
+    
+  >footer
+    fixed false 0 0 0
+    z-index 500
+    
+  box-sizing-reset()
+  >main
+    min-height 100%
+    padding 6rem 3rem
+    +media-query(all, max-width 600px)
+      padding 64px 0
+    +media-query(all, max-width 600px, orientation landscape)
+      padding 48px 0
+    
+    display block
+    position relative
+    
+    //著者名の右寄せ
+    footer
+      text-align right
+    
+    // クロスフェード
+    &.ng-enter
+    &.ng-leave
+      absolute 0 0 false 0
+    &.ng-enter
+      animation fadeIn .5s
+      z-index 300
+    &.ng-leave
+      animation fadeOut .5s
+
+//iPhoneだとbodyに余白が無いので追記
+md-content.top
+  padding 1em
+
+.top
+  absolute 0 5vw 0 5vw
+  margin auto
+  height 20em
+  +media-query(all,max-width 600px)
+    height 70vh
+    h2
+      font-size large
+
+  overflow hidden
+  h2
+    font-family 'Lobster',cursive
+    text-align center
+  p
+    margin .25em 0
+
+// 新規コメントのフェードイン処理
+.chat
+  &.ng-enter
+    animation fadeIn .5s
+  &.ng-leave
+    animation fadeOut .5s

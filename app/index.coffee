@@ -12,10 +12,8 @@ app= angular.module process.env.APP,[
 ]
 
 require './services'
-require './reader'
-require './sound'
-require './sound-enabler'
-require './outside'
+
+app.constant 'Bluebird', require 'bluebird'
 
 app.constant 'angularMomentConfig',
   preprocess: 'unix'
@@ -53,7 +51,7 @@ app.run (
   $rootScope.outside= (event,url)->
     options=
       locals: {url}
-      template: require './outside.jade'
+      template: require './services/outside.jade'
       controller: 'outsideController as outside'
       bindToController: yes
 

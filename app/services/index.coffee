@@ -1,6 +1,11 @@
 # Dependencies
 app= angular.module process.env.APP
 
+require './reader'
+require './sound'
+require './sound-enabler'
+require './outside'
+
 # Publish services
 app.factory 'notify',($state,$mdToast,$rootScope)->
   (message)->
@@ -27,7 +32,7 @@ app.directive 'autofocus',($timeout)->
     $timeout ->
       element[0].focus()
 
-app.directive 'fetchNickname',($q,socket)->
+app.directive 'fetchNickname',(Bluebird,socket)->
   cache= {}
 
   scope:
@@ -35,13 +40,26 @@ app.directive 'fetchNickname',($q,socket)->
   link: (scope,element,attrs)->
     userId= scope.userId
 
-    $q (resolve,reject)->
-      return resolve cache[scope.userId] if cache[scope.userId]?
+    promise=
+      if cache[userId]
+        cache[userId]
 
-      socket.emit 'nickname',scope.userId,(error,nickname)->
-        reject error if error
-        resolve nickname
+      else
+        isFirst= yes
+        new Bluebird (resolve,reject)->
+          socket.emit 'nickname',userId,(error,nickname)->
+            return reject error if error
+            resolve nickname
+
+        .catch ->
+          userId
+
+    # TODO: 大所帯だとメモリえらいことになりそう
+    cache[userId]= promise
+
+    promise
     .then (nickname)->
+      nickname= '(NEW)'+ nickname if isFirst
       element.text nickname
 
 app.directive 'fetchAvatar',($q)->
