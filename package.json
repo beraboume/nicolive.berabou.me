@@ -2,13 +2,11 @@
   "name": "nicolive.berabou.me",
   "private": true,
   "version": "0.0.0-beta",
-
   "main": "server.coffee",
   "scripts": {
     "postinstall": "bower install",
     "start": "coffee server.coffee"
   },
-  
   "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
   "license": "MIT",
   "dependencies": {
@@ -16,6 +14,7 @@
     "difficult-http-server": "^0.0.4",
     "express": "^4.13.1",
     "nicolive.io": "^0.0.2-alpha",
-    "socket.io-redis": "^0.1.4"
+    "socket.io-redis": "^0.1.4",
+    "throat": "^2.0.2"
   }
 }

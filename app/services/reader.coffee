@@ -72,7 +72,8 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
   new Reader
 
 # TODO: 複数のコメントを同時に読み上げるので、directiveのキューを実装したい
-app.factory 'Voicetext',(Sound,$localStorage)->
+app.factory 'Voicetext',(Bluebird,throat,Sound,$localStorage)->
+  queue= (throat Bluebird) 1
   url= 'http://voicetext.berabou.me/'
 
   class Voicetext
@@ -87,7 +88,11 @@ app.factory 'Voicetext',(Sound,$localStorage)->
       ).join('&')
 
       uri= url+text+'?'+querystring
-      sound= new Sound uri
-      sound.play()
+
+      queue ->
+        new Bluebird (resolve)->
+          sound= new Sound uri
+          sound.play()
+          sound.onended= resolve
 
   Voicetext

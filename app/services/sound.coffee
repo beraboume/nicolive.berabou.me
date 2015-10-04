@@ -24,5 +24,6 @@ app.factory 'Sound',($http)->
         source.buffer= @buffer
         source.connect audioContext.destination
         source.start 0
+        source.onended= @onended
 
   Sound

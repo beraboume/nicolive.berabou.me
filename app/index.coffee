@@ -14,6 +14,7 @@ app= angular.module process.env.APP,[
 require './services'
 
 app.constant 'Bluebird', require 'bluebird'
+app.constant 'throat', require 'throat'
 
 app.constant 'angularMomentConfig',
   preprocess: 'unix'
