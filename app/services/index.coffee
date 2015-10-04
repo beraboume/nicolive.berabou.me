@@ -1,6 +1,11 @@
 # Dependencies
 app= angular.module process.env.APP
 
+require './reader'
+require './sound'
+require './sound-enabler'
+require './outside'
+
 # Publish services
 app.factory 'notify',($state,$mdToast,$rootScope)->
   (message)->
