@@ -7,9 +7,22 @@ app.controller 'settingController',($scope,$localStorage,$mdDialog,voices,reader
   viewModel.words= 'ゆっくりしていってね'
   viewModel.voices= voices
   viewModel.$storage= $localStorage
+  viewModel.emotions= [
+    ''
+    'happiness'
+    'anger'
+    'sadness'
+  ]
+  viewModel.emotionNames= [
+    'ふつう'
+    '楽しい'
+    '怒り'
+    '悲しい'
+  ]
 
   $scope.$watch ->
     viewModel.$storage.reader
+
   ,(options,old)->
     viewModel.voice= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
 

@@ -10,7 +10,7 @@ html(lang="en")
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     link(href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=latin,latin-ext" rel="stylesheet")
 
-    script(src="pkgs.js")
+    script(src=process.env.NODE_ENV=='production'? 'pkgs.min.js': 'pkgs.js')
     script(src="index.js")
     link(href="index.css" rel="stylesheet")
     

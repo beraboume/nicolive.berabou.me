@@ -68,10 +68,8 @@ md-dialog(aria-label='読みあげ')
         .md-mini(layout)
           .md-body-1(flex="40") 感情
           md-select(ng-model='setting.$storage.reader.emotion' placeholder='Emotion')
-            md-option(value='' selected) ふつう
-            md-option(value='happiness') 楽しい
-            md-option(value='anger') 怒り
-            md-option(value='sadness') 悲しい
+            md-option(ng-value="emotion" ng-repeat="emotion in setting.emotions track by $index")
+              | {{setting.emotionNames[$index]}}
 
         .md-mini(layout)
           .md-body-1(flex="40") 感情レベル
