@@ -20,7 +20,11 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
-平成２７年１０月５日（日）
+平成２７年１０月５日（月）
+---
+* 変更：初めてコメントしたユーザーを太字にする
+
+平成２７年１０月４日（日）
 ---
 * 追加：コメント番号の表示。
 * 変更：デザイン。angular-materialのバージョンを`0.11.2`に更新。

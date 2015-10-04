@@ -59,8 +59,8 @@ app.directive 'fetchNickname',(Bluebird,socket)->
 
     promise
     .then (nickname)->
-      nickname= '(NEW)'+ nickname if isFirst
       element.text nickname
+      element.css 'font-weight','bold' if isFirst
 
 app.directive 'fetchAvatar',($q)->
   cache= {}
