@@ -1,10 +1,13 @@
-module.exports= ($window,$mdDialog,notify,$state,$timeout)->
+# Dependencies
+app= angular.module process.env.APP
+
+# Public
+app.controller 'headerController',($window,$mdDialog,notify,$state,$timeout)->
   viewModel= this
   viewModel.dialog= (event)->
     options=
       template: require './view.jade'
-      controller: require './view.coffee'
-      controllerAs: 'view'
+      controller: 'viewController as view'
 
       focusOnOpen: false
       clickOutsideToClose: true
@@ -25,8 +28,7 @@ module.exports= ($window,$mdDialog,notify,$state,$timeout)->
   viewModel.setting= (event)->
     options=
       template: require './setting.jade'
-      controller: require './setting.coffee'
-      controllerAs: 'setting'
+      controller: 'settingController as setting'
 
       focusOnOpen: false
       parent: angular.element document.body

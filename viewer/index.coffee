@@ -1,24 +1,8 @@
-module.exports.resolve=
-  server:
-    ($q,$localStorage,$stateParams,socket,$rootScope)->
-      $q.when()
-      .then ->
-        $q (resolve)->
-          socket.emit 'auth',$localStorage.session
-          socket.removeAllListeners 'authorized'
-          socket.on 'authorized',resolve
-      .then ->
-        $q (resolve)->
-          socket.emit 'view',decodeURIComponent($stateParams.id),{res_from:100}
-          socket.removeAllListeners 'getplayerstatus'
-          socket.on 'getplayerstatus',(playerStatus)->
-            $rootScope.title= playerStatus.title
-            $rootScope.picture_url= playerStatus.picture_url
-            $rootScope.default_community= playerStatus.default_community
+# Dependencies
+app= angular.module process.env.APP
 
-            resolve socket
-
-module.exports.controller= (
+# Public
+app.controller 'viewerController',(
   $rootScope
   $localStorage
   server

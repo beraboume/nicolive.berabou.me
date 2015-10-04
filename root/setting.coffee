@@ -1,4 +1,8 @@
-module.exports= ($scope,$localStorage,$mdDialog,voices,reader)->
+# Dependencies
+app= angular.module process.env.APP
+
+# Public
+app.controller 'settingController',($scope,$localStorage,$mdDialog,voices,reader)->
   viewModel= this
   viewModel.words= 'ゆっくりしていってね'
   viewModel.voices= voices

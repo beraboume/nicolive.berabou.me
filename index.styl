@@ -38,7 +38,9 @@ md-content.top
 .top
   absolute 0 5vw 0 5vw
   margin auto
-  height 70vh
+  height 20em
+  +media-query(all,max-width 640px)
+    height 70vh
   overflow hidden
   h2
     font-family 'Lobster',cursive

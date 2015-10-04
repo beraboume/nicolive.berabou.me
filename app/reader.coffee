@@ -51,8 +51,6 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
       if speaker.lang is 'ja-VT'
         voice= new Voicetext text,$localStorage.reader
 
-        console.log voice
-
       else
         speech= new SpeechSynthesisUtterance
         speech.text= text
@@ -70,8 +68,6 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
           .then (response)->
             speech.text= response.data
             speechSynthesis.speak speech
-
-            console.log speech.text
 
   new Reader
 

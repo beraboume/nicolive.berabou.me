@@ -15,6 +15,7 @@ require './services'
 require './reader'
 require './sound'
 require './sound-enabler'
+require './outside'
 
 app.constant 'angularMomentConfig',
   preprocess: 'unix'
@@ -53,8 +54,7 @@ app.run (
     options=
       locals: {url}
       template: require './outside.jade'
-      controller: require './outside.coffee'
-      controllerAs: 'outside'
+      controller: 'outsideController as outside'
       bindToController: yes
 
       focusOnOpen: false
