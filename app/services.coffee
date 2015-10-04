@@ -78,7 +78,8 @@ app.filter 'parseUrl',($sce)->
       '"':'&quot;'
       '\'':'&apos;'
     linked= text.replace /([<>"'])/g,(key)-> keys[key]
-    linked= linked.replace urlPattern,'<a href="#" onclick="angular.element(document.querySelector(\'main\')).scope().outside(event,\'$&\');return false;">$&</a>'
+    linked= linked.replace urlPattern,'<a href="$&" target="_blank">$&</a>'
+    # linked= linked.replace urlPattern,'<a href="#" onclick="angular.element(document.querySelector(\'main\')).scope().outside(event,\'$&\');return false;">$&</a>'
     $sce.trustAsHtml linked
 
 # etc...
