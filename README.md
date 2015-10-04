@@ -22,7 +22,9 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 平成２７年１０月５日（月）
 ---
-* 変更：初めてコメントしたユーザーを太字にする
+* 変更：初めてコメントしたユーザーを太字にする(#7)
+* 修正：`VoiceText Web API`が同時に再生されてしまう不具合 (#9)
+* 追加：[Open JTalk](https://github.com/59naga/openjtalk.berabou.me)を話者に選べるように (#10)
 
 平成２７年１０月４日（日）
 ---
@@ -30,8 +32,8 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 * 変更：デザイン。angular-materialのバージョンを`0.11.2`に更新。
 * 変更：リファクタリング。ディレクトリ構造と各ファイルの依存関係を簡素化。
 * 変更：URLを開くさいの確認ダイアログを廃止。新しいウィンドウを開くように。
-* 修正：主コメントのテキストも、URLがあればリンク化するように。
-* 修正：読み上げ＞感情レベルが保存されない
+* 修正：主コメントのテキストも、URLがあればリンク化するように。(#5)
+* 修正：読み上げ＞感情レベルが保存されない(#6)
 
 平成２７年７月２２日（土）
 ---

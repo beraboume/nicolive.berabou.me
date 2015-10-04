@@ -31,11 +31,24 @@ app.factory 'voices',($window)->
       {lang:'ja-VT',name:voice,emotionable:(voice isnt 'show')}
   ).concat voices
 
+  # https://github.com/59naga/nicolive.berabou.me/issues/10
+  ojtNames= [
+    'CUBE370_A'
+    'CUBE370_B'
+    'CUBE370_C'
+    'CUBE370_D'
+    'mei_normal'
+  ]
+  voices= (
+    for voice in ojtNames
+      {lang:'ja-OJT',name:voice}
+  ).concat voices
+
   voices.unshift {name:'off'}
 
   voices
 
-app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
+app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI)->
   {
     SpeechSynthesisVoice
     SpeechSynthesisUtterance
@@ -49,7 +62,10 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
       return unless speaker?.lang
 
       if speaker.lang is 'ja-VT'
-        voice= new Voicetext text,$localStorage.reader
+        voice= new VoiceAPI 'http://voicetext.berabou.me/',text,$localStorage.reader
+
+      if speaker.lang is 'ja-OJT'
+        voice= new VoiceAPI 'http://openjtalk.berabou.me/',text,$localStorage.reader
 
       else
         speech= new SpeechSynthesisUtterance
@@ -72,12 +88,11 @@ app.factory 'reader',($localStorage,$window,$http,voices,Voicetext)->
   new Reader
 
 # TODO: 複数のコメントを同時に読み上げるので、directiveのキューを実装したい
-app.factory 'Voicetext',(Bluebird,throat,Sound,$localStorage)->
+app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
   queue= (throat Bluebird) 1
-  url= 'http://voicetext.berabou.me/'
 
-  class Voicetext
-    constructor: (@text,params)->
+  class VoiceAPI
+    constructor: (url,@text,params)->
       params= JSON.parse JSON.stringify params
       params.emotion_level= '' if params.emotion is ''
 
@@ -95,4 +110,4 @@ app.factory 'Voicetext',(Bluebird,throat,Sound,$localStorage)->
           sound.play()
           sound.onended= resolve
 
-  Voicetext
+  VoiceAPI
