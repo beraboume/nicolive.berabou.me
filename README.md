@@ -23,6 +23,7 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 平成２７年１０月５日（月）
 ---
 * 変更：初めてコメントしたユーザーを太字にする(#7)
+* 修正：URLは「URL省略」と読み上げるように(#11 一部)
 * 修正：`VoiceText Web API`が同時に再生されてしまう不具合 (#9)
 * 追加：[Open JTalk](https://github.com/59naga/openjtalk.berabou.me)を話者に選べるように (#10)
 

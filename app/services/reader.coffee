@@ -48,7 +48,7 @@ app.factory 'voices',($window)->
 
   voices
 
-app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI)->
+app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
   {
     SpeechSynthesisVoice
     SpeechSynthesisUtterance
@@ -60,6 +60,8 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI)->
       speaker= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
 
       return unless speaker?.lang
+
+      text= text.replace urlPattern,'URL省略'
 
       if speaker.lang is 'ja-VT'
         voice= new VoiceAPI 'http://voicetext.berabou.me/',text,$localStorage.reader

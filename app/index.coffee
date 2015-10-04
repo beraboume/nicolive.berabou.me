@@ -16,6 +16,9 @@ require './services'
 app.constant 'Bluebird', require 'bluebird'
 app.constant 'throat', require 'throat'
 
+# ref: http://stackoverflow.com/questions/14692640/angularjs-directive-to-replace-text
+app.constant 'urlPattern',/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi
+
 app.constant 'angularMomentConfig',
   preprocess: 'unix'
 

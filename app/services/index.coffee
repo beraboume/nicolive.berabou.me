@@ -85,10 +85,7 @@ app.directive 'fetchAvatar',($q)->
       
       element.attr 'src',noimage
 
-app.filter 'parseUrl',($sce)->
-  # ref: http://stackoverflow.com/questions/14692640/angularjs-directive-to-replace-text
-  urlPattern= /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/gi;
-
+app.filter 'parseUrl',($sce,urlPattern)->
   (text)->
     keys=
       '<':'&lt;'
