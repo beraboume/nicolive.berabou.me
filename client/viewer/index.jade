@@ -6,6 +6,9 @@ md-content.md-whiteframe-z4
         md-list-item.md-2-line
           .md-list-item-text
             p(ng-bind-html="chat.text | parseUrl") {{chat.text}}
+            footer.md-secondary
+              p: small {{chat.no}}
+              p(am-time-ago="chat.date")
 
       div(ng-hide="chat.premium=='3'")
         md-divider(ng-show="$index>0")

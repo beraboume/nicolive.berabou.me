@@ -3,24 +3,15 @@
   "private": true,
   "version": "0.0.0-alpha",
   "scripts": {
-    "postinstall": "bower install && onefile --output client/pkgs",
-    "start": "coffee index.coffee",
-    "build": "onefile --output client/pkgs"
+    "postinstall": "bower install",
+    "start": "coffee server.coffee"
   },
   "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
   "license": "MIT",
   "dependencies": {
-    "bower": "^1.4.1",
-    "browserify-middleware": "^6.0.0",
-    "browserify-plain-jade": "^0.2.2",
-    "coffeeify": "^1.1.0",
+    "difficult-http-server": "0.0.3",
     "express": "^4.13.1",
-    "jade": "^1.11.0",
-    "kouto-swiss": "^0.11.13",
     "nicolive.io": "^0.0.2-alpha",
-    "onefile": "^0.3.0-beta.5",
-    "romanizer": "0.0.0-alpha",
-    "socket.io-redis": "^0.1.4",
-    "stylus": "^0.51.1"
+    "socket.io-redis": "^0.1.4"
   }
 }
