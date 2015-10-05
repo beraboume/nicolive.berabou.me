@@ -63,29 +63,30 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
 
       text= text.replace urlPattern,'URL省略'
 
-      if speaker.lang is 'ja-VT'
-        voice= new VoiceAPI 'http://voicetext.berabou.me/',text,$localStorage.reader
+      switch speaker.lang
+        when 'ja-VT'
+          voice= new VoiceAPI 'http://voicetext.berabou.me/',text,$localStorage.reader
 
-      if speaker.lang is 'ja-OJT'
-        voice= new VoiceAPI 'http://openjtalk.berabou.me/',text,$localStorage.reader
-
-      else
-        speech= new SpeechSynthesisUtterance
-        speech.text= text
-        speech.lang= 'ja-JP' if speaker.lang is 'ja-JP'
-        speech.voice= speaker
-        speech.volume= $localStorage.reader.volume / 100
-        speech.pitch= $localStorage.reader.pitch / 100
-        speech.speed= $localStorage.reader.speed / 100
-
-        if speech.lang is 'ja-JP'
-          speechSynthesis.speak speech
+        when 'ja-OJT'
+          voice= new VoiceAPI 'http://openjtalk.berabou.me/',text,$localStorage.reader
 
         else
-          $http.get 'http://romanize.berabou.me/'+encodeURIComponent(text)
-          .then (response)->
-            speech.text= response.data
+          speech= new SpeechSynthesisUtterance
+          speech.text= text
+          speech.lang= 'ja-JP' if speaker.lang is 'ja-JP'
+          speech.voice= speaker
+          speech.volume= $localStorage.reader.volume / 100
+          speech.pitch= $localStorage.reader.pitch / 100
+          speech.speed= $localStorage.reader.speed / 100
+
+          if speech.lang is 'ja-JP'
             speechSynthesis.speak speech
+
+          else
+            $http.get 'http://romanize.berabou.me/'+encodeURIComponent(text)
+            .then (response)->
+              speech.text= response.data
+              speechSynthesis.speak speech
 
   new Reader
 

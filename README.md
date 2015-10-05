@@ -20,6 +20,10 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+平成２７年１０月６日（火）
+---
+* 修正：`VoiceText Web API`を選択した時に`SpeechSynthesisUtterance`も同時に再生されてしまう不具合
+
 平成２７年１０月５日（月）
 ---
 * 変更：初めてコメントしたユーザーを太字にする(#7)
