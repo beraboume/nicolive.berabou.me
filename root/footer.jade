@@ -1,6 +1,6 @@
 md-toolbar
   .md-toolbar-tools
-    form(flex ng-submit="footer.comment()" layout="row")
+    form(ng-submit="footer.comment()" layout="row")
       md-input-container(flex="80")
         label コメント
         input(ng-model="footer.text")

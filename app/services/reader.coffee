@@ -90,6 +90,7 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
 
   new Reader
 
+# TODO: 複数のコメントを同時に読み上げるので、directiveのキューを実装したい
 app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
   queue= (throat Bluebird) 1
 
@@ -107,7 +108,9 @@ app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
       uri= url+text+'?'+querystring
 
       queue ->
-        sound= new Sound uri
-        sound.play()
+        new Bluebird (resolve)->
+          sound= new Sound uri
+          sound.play()
+          sound.onended= resolve
 
   VoiceAPI
