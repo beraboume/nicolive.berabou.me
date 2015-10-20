@@ -7,7 +7,7 @@ md-dialog(aria-label='読みあげ')
         md-button.md-icon-button(type="button" ng-click="setting.close()")
           md-icon(aria-label='Close dialog') close
 
-    md-dialog-content
+    md-dialog-content(layout-padding)
       md-input-container
         label テスト文章
         input(ng-model="setting.words")

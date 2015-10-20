@@ -18,10 +18,10 @@ app.config ($stateProvider)->
   $stateProvider.state 'root',
     views:
       header:
-        template: require './root/header.jade'
+        template: (require './root/header.jade')()
         controller: 'headerController as header'
       footer:
-        template: require './root/footer.jade'
+        template: (require './root/footer.jade')()
         controller: 'footerController as footer'
 
 app.config ($stateProvider)->
@@ -29,7 +29,7 @@ app.config ($stateProvider)->
     url: '/'
     views:
       'container@':
-        template: require './top/index.jade'
+        template: (require './top/index.jade')()
 
 app.config ($stateProvider)->
   $stateProvider.state 'root.viewer',
@@ -55,5 +55,5 @@ app.config ($stateProvider)->
                 resolve socket
     views:
       'container@':
-        template: require './viewer/index.jade'
+        template: (require './viewer/index.jade')()
         controller: 'viewerController as viewer'

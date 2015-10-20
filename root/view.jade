@@ -6,7 +6,7 @@ md-dialog(aria-label='サーバーへ接続する')
         span(flex)
         md-button.md-icon-button(type="button" ng-click="view.cancel()")
           md-icon(aria-label='Close dialog') close
-    md-dialog-content
+    md-dialog-content(layout-padding)
       md-input-container
         label チャンネルid
         input(ng-model='view.$storage.id' autofocus)

@@ -6,7 +6,7 @@ app.controller 'headerController',($window,$mdDialog,notify,$state,$timeout)->
   viewModel= this
   viewModel.dialog= (event)->
     options=
-      template: require './view.jade'
+      template: (require './view.jade')()
       controller: 'viewController as view'
 
       focusOnOpen: false
@@ -27,7 +27,7 @@ app.controller 'headerController',($window,$mdDialog,notify,$state,$timeout)->
 
   viewModel.setting= (event)->
     options=
-      template: require './setting.jade'
+      template: (require './setting.jade')()
       controller: 'settingController as setting'
 
       focusOnOpen: false
