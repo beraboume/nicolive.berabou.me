@@ -59,9 +59,10 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
     read: (text)->
       speaker= (voice for voice in voices when voice.name is $localStorage.reader?.speaker)[0]
 
-      return unless speaker?.lang
-
       text= text.replace urlPattern,'URL省略'
+
+      return unless speaker?.lang
+      return if text?.slice(0,3) is '/hb' # `/hb ifseetno 304`
 
       switch speaker.lang
         when 'ja-VT'
@@ -90,7 +91,6 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
 
   new Reader
 
-# TODO: 複数のコメントを同時に読み上げるので、directiveのキューを実装したい
 app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
   queue= (throat Bluebird) 1
 
@@ -108,7 +108,9 @@ app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
       uri= url+text+'?'+querystring
 
       queue ->
-        sound= new Sound uri
-        sound.play()
+        new Bluebird (resolve)->
+          sound= new Sound uri
+          sound.play()
+          .finally resolve
 
   VoiceAPI
