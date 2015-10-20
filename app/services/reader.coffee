@@ -91,6 +91,7 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
 
   new Reader
 
+i= 0
 app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
   queue= (throat Bluebird) 1
 
@@ -107,7 +108,7 @@ app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
 
       uri= url+text+'?'+querystring
 
-      queue ->
+      queue =>
         sound= new Sound uri
         sound.play()
 
