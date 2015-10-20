@@ -108,9 +108,7 @@ app.factory 'VoiceAPI',(Bluebird,throat,Sound,$localStorage)->
       uri= url+text+'?'+querystring
 
       queue ->
-        new Bluebird (resolve)->
-          sound= new Sound uri
-          sound.play()
-          .finally resolve
+        sound= new Sound uri
+        sound.play()
 
   VoiceAPI

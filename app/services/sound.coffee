@@ -11,10 +11,11 @@ app.factory 'Sound',($http,Bluebird)->
     constructor: (url)->
       return new Audio url unless audioContext# Fix >=IE11
 
-      @buffer= new Bluebird (resolve)->
+      @buffer= new Bluebird (resolve,reject)->
         $http.get url,{responseType:'arraybuffer'}
         .then (response)->
           audioContext.decodeAudioData response.data,resolve
+        .catch reject
 
     play: ->
       @buffer
