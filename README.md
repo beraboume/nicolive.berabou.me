@@ -66,8 +66,8 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 gitおよびNodeJSとbowerのインストールが終了していることが前提です。ターミナル／cmder環境下で
 
 ```bash
-git clone https://github.com/59naga/nico.berabou.me.git
-cd nico.berabou.me
+git clone https://github.com/59naga/nicolive.berabou.me.git
+cd nicolive.berabou.me
 
 npm install
 npm start
