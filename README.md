@@ -61,6 +61,29 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 * 読み上げ機能の実装
 * 外人のボイスを選択時は文章をローマ字にして無理やり読ませるように変更
 
+# Setup & Boot
+
+gitおよびNodeJSとbowerのインストールが終了していることが前提です。ターミナル／cmder環境下で
+
+```bash
+git clone https://github.com/59naga/nico.berabou.me.git
+cd nico.berabou.me
+
+npm install
+npm start
+# Server running at http://localhost:59798
+```
+
+とすることで、`http://localhost:59798`上に、開発環境を起動できます。
+
+```bash
+NODE_ENV=production npm start
+# Server running at http://localhost:59798
+```
+
+とすることで、本番環境に近い、コンパイルを圧縮して、各`index`ファイルを公開します。
+（初回起動時、ファイルの圧縮にCPUをかなり消費します。プロセスが強制終了して`pkgs.min.js`が生成されない場合は、`onefile -o pkgs.min.js -m`を手動で行う必要があるかもしれません。ファイルが`./pkgs.min.js`に存在する場合、圧縮処理は起動しません。）
+
 License
 ---
 [MIT][License]
