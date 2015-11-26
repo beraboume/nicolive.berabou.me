@@ -20,7 +20,11 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
-平成２７年１０月６日（火）
+`0.0.1`: 平成２７年１１月２７日（金）
+---
+* 修正：セッションIDが84文字ではない場合、ログインできない不具合（[#18](https://github.com/59naga/nicolive.berabou.me/issues/18)）
+
+`0.0.0`: 平成２７年１０月６日（火）
 ---
 * 修正：`VoiceText Web API`を選択した時に`SpeechSynthesisUtterance`も同時に再生されてしまう不具合
 
