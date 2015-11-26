@@ -12,7 +12,7 @@ md-dialog(aria-label='サーバーへ接続する')
         input(ng-model='view.$storage.id' autofocus)
       md-input-container
         label セッション(82 or 84文字)
-        input(ng-model='view.$storage.session' pattern="^[a-zA-z0-9]$")
+        input(ng-model='view.$storage.session' pattern="^[a-zA-z0-9]+$")
     .md-actions(layout='row')
       md-button.md-primary
         | 接続する
