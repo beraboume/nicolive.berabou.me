@@ -2,7 +2,6 @@
 express= require 'express'
 dhs= require 'difficult-http-server'
 NicoliveIo= (require 'nicolive.io').NicoliveIo
-socketIoRedis= require 'socket.io-redis'
 
 # Environment
 cwd= __dirname
@@ -19,7 +18,6 @@ app.use dhs {cwd,bundleExternal}
 
 # Setup socket.io
 server= new NicoliveIo app
-server.adapter socketIoRedis {host:process.env.DOCKER_IP,port:'6379'}
 
 # Boot
 server.listen process.env.PORT,->

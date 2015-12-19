@@ -16,6 +16,8 @@ app.controller 'viewerController',(
   viewModel.chats= []
   server.removeAllListeners 'chat'
   server.on 'chat',(chat)->
+    return if chat.text.match /^\/hb ifseetno \d+$/
+
     viewModel.chats.push chat
 
     $timeout ->

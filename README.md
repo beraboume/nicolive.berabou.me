@@ -20,6 +20,10 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+`0.0.2`: 平成２７年１２月２０日（土）
+---
+* 変更: 一般追い出しコメント`/hb ifseetno`を非表示に
+
 `0.0.1`: 平成２７年１１月２７日（金）
 ---
 * 修正：セッションIDが84文字ではない場合、ログインできない不具合（[#18](https://github.com/59naga/nicolive.berabou.me/issues/18)）
