@@ -22,7 +22,7 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 `0.0.2`: 平成２７年１２月２０日（土）
 ---
-* 変更: 一般追い出しコメント`/hb ifseetno`を非表示に
+* 変更：一般追い出しコメント`/hb ifseetno`を非表示に
 
 `0.0.1`: 平成２７年１１月２７日（金）
 ---
@@ -50,24 +50,24 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 平成２７年７月２２日（土）
 ---
-* iPhoneでも読み上げが再生できるようにtouchstartに無音ファイルを再生する処理を追記
-* wav -> aacに変更
-* コメント入力欄の autofocus を除去（初回タップ時にバーチャルキーボードが出る）
+* 追加：iPhoneでも読み上げが再生できるようにtouchstartに無音ファイルを再生する
+* 変更：読み上げ音声をwav -> aacに
+* 削除：コメント入力欄の autofocus （初回タップ時にバーチャルキーボードが出る）
 
 平成２７年７月１８日（土）
 ---
-* [VoiceText Web API](https://cloud.voicetext.jp/webapi)を使用して読み上げ出来るようにボイスを追加
+* 追加：[VoiceText Web API](https://cloud.voicetext.jp/webapi)
 
 平成２７年７月１７日（金）
 ---
-* コメント中のURLをクリックで開けるように修正
-* １８４ボタンを記憶するように修正
+* 修正：コメント中のURLをクリックで開けるように
+* 修正：１８４ボタンを記憶するように
 
 平成２７年７月１２日（日）
 ---
-* アルファ版を公開
-* 読み上げ機能の実装
-* 外人のボイスを選択時は文章をローマ字にして無理やり読ませるように変更
+* 公開：アルファ版
+* 追加：読み上げ機能の実装
+* 変更：外人のボイスを選択時は文章をローマ字にして無理やり読ませるように
 
 # Setup & Boot
 
