@@ -1,7 +1,7 @@
 {
   "name": "nicolive.berabou.me",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "server.coffee",
   "scripts": {
     "postinstall": "bower install",
@@ -13,7 +13,7 @@
     "bluebird": "^2.10.2",
     "difficult-http-server": "^0.0.12",
     "express": "^4.13.1",
-    "nicolive.io": "^0.0.2-alpha",
+    "nicolive.io": "^0.0.2",
     "throat": "^2.0.2"
   }
 }

@@ -20,6 +20,10 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+`0.0.3`: 平成２８年０２月２６日（金）
+---
+* 修正：送信したコメントが公式コメント欄に表示されない不具合の修正(refs [nicolive.io#2](https://github.com/59naga/nicolive.io/issues/2))
+
 `0.0.2`: 平成２７年１２月２０日（土）
 ---
 * 変更：一般追い出しコメント`/hb ifseetno`を非表示に
