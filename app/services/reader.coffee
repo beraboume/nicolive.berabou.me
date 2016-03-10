@@ -8,7 +8,7 @@ app.directive 'read',(reader)->
   link: (scope,element,attrs)->
     {date,text}= scope.chat
 
-    reader.read text if date*1000>Date.now()-1000 * 10#sec  
+    reader.read text if date*1000>Date.now()-1000 * 10#sec
 
 # Private
 app.factory 'voices',($window)->
@@ -78,7 +78,8 @@ app.factory 'reader',($localStorage,$window,$http,voices,VoiceAPI,urlPattern)->
           speech.voice= speaker
           speech.volume= $localStorage.reader.volume / 100
           speech.pitch= $localStorage.reader.pitch / 100
-          speech.speed= $localStorage.reader.speed / 100
+          speech.rate= $localStorage.reader.speed / 100
+          speech.rate= 2 if speech.rate > 2 # if rate greater than 2, chrome has been hanging
 
           if speech.lang is 'ja-JP'
             speechSynthesis.speak speech
