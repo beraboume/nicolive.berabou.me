@@ -20,6 +20,10 @@ gtk2k氏の[nicolive.berabou.me-boot-button](https://github.com/gtk2k/nicolive.b
 
 # 更新履歴
 
+`0.0.4`: 平成２８年０３月１０日（木）
+---
+* 修正：読み上げ＞オプション＞スピードでSpeechSynthesisUtteranceが変化しない不具合([#19](https://github.com/beraboume/nicolive.berabou.me/issues/19))
+
 `0.0.3`: 平成２８年０２月２６日（金）
 ---
 * 修正：送信したコメントが公式コメント欄に表示されない不具合の修正(refs [nicolive.io#2](https://github.com/59naga/nicolive.io/issues/2))
